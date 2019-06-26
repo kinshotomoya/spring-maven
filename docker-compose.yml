@@ -6,4 +6,7 @@ services:
     ports:
       - "9000:8080"
     tty: true
-
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
