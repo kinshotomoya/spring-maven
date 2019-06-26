@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-mvn package &&　java -jar /app/target/demo-0.0.1-SNAPSHOT.jar
+java -jar /app/target/demo-0.0.1-SNAPSHOT.jar
