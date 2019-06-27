@@ -13,6 +13,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin().loginPage("login").permitAll();
         // csrfの管理を行ったり、url別のアクセス許可を行ったりできる
 //        hthtttptp.authorizeRequests().antMatchers()
 //        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
