@@ -4,19 +4,19 @@ import java.time.LocalDateTime;
 
 public class UserForm {
     private String userName;
-    private LocalDateTime time;
+    private LocalDateTime expiredTime;
 
-    public UserForm(String userName, LocalDateTime time) {
+    public UserForm(String userName, LocalDateTime expiredTime) {
         this.userName = userName;
-        this.time = time;
+        this.expiredTime = expiredTime;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getExpiredTime() {
+        return expiredTime;
     }
 
     public void setUserName(String userName) {
@@ -24,6 +24,6 @@ public class UserForm {
     }
 
     public void setTime(LocalDateTime time) {
-        this.time = time;
+        this.expiredTime = time;
     }
 }

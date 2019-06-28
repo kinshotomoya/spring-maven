@@ -34,16 +34,15 @@ public class UserController {
 
     @PostMapping("/sign_up")
     public String create(@ModelAttribute UserForm userForm) {
-        // sessionの作成
-        // email, passwordのバリデーション
-        // email, passwordの保存
+        // TODO tomoya.kinsho ユーザー情報を作成する処理を書く (2019-06-28)
         createSession(userForm);
         return "sign_up";
     }
 
     private void createSession(UserForm userForm) {
         // beanに詰める
-        UserInfoBean userInfoBean = new UserInfoBean(userForm.getUserName(), userForm.getTime());
+        // 30分をexpiredtimeにする
+        UserInfoBean userInfoBean = new UserInfoBean(userForm.getUserName(), userForm.getExpiredTime());
         session.setAttribute("userInfo", userInfoBean);
     }
 }
