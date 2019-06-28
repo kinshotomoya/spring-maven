@@ -1,12 +1,12 @@
-package bean;
+package com.example.form;
 
 import java.time.LocalDateTime;
 
-public class UserInfoBean {
+public class UserForm {
     private String userName;
     private LocalDateTime time;
 
-    public UserInfoBean(String userName, LocalDateTime time) {
+    public UserForm(String userName, LocalDateTime time) {
         this.userName = userName;
         this.time = time;
     }
