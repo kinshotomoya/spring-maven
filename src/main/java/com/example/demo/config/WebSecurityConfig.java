@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,11 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity web) throws Exception {
+        // カスタムのloginフォームに飛ばす処理
+        // これを書かなかったら、自動的に作られたログインフォームに飛んでしまう
         web.formLogin().loginPage("/login");
-        // csrfの管理を行ったり、url別のアクセス許可を行ったりできる
-//        http.authorizeRequests().antMatchers()
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }
