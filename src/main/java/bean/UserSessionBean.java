@@ -1,12 +1,12 @@
-package com.example.demo.form;
+package bean;
 
 import java.time.LocalDateTime;
 
-public class UserForm {
+public class UserSessionBean {
     private String userName;
     private LocalDateTime expiredTime;
 
-    public UserForm(String userName, LocalDateTime expiredTime) {
+    public UserSessionBean(String userName, LocalDateTime expiredTime) {
         this.userName = userName;
         this.expiredTime = expiredTime;
     }

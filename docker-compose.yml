@@ -6,7 +6,23 @@ services:
     ports:
       - "9000:8080"
     tty: true
-  redis:
-    image: redis
+  db:
+    image: mysql:5.7
+    container_name: mysql-container
     ports:
-      - "6379:6379"
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my/cnf
+    environment:
+      MYSQL_DATABASE: facebook
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+#  TODO: インメモリの実装を優先して行うため、redisは一旦使わない
+#  redis:
+#    image: redis
+#    ports:
+#      - "6379:6379"
