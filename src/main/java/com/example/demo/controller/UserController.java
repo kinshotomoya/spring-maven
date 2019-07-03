@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.UserAuth;
+import com.example.demo.entity.AuthUser;
 import bean.UserSessionBean;
-import com.example.demo.form.userAuthForm;
-import com.example.demo.repository.UserAuthRepository;
+import com.example.demo.entity.User;
+import com.example.demo.form.UserAuthForm;
+import com.example.demo.repository.AuthUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class UserController {
     HttpSession session;
 
     @Autowired
-    private UserAuthRepository userAuthRepository;
+    private AuthUserRepository authUserRepository;
 
     @GetMapping("/sign_up")
     public String renderSignUp() {
@@ -35,15 +36,20 @@ public class UserController {
     }
 
     @PostMapping("/sign_up")
-    public String create(@ModelAttribute userAuthForm userAuthForm) {
-        // TODO tomoya.kinsho ユーザー情報を作成する処理を書く (2019-06-28)
-        UserAuth userAuth = new UserAuth();
-        userAuth.setEmail(userAuthForm.getEmail());
-        userAuth.setHashpassword(userAuthForm.getPassword());
-        userAuthRepository.save(userAuth);
-
+    public String create(@ModelAttribute UserAuthForm userAuthForm) {
+        // TODO tomoya.kinsho requestを取得する処理書く (2019-07-03)
+        AuthUser authUser = new AuthUser();
+        authUser.setEmail(userAuthForm.getEmail());
+        authUser.setHashed_password(userAuthForm.getPassword());
+        AuthUser createdAuthUser = authUserRepository.save(authUser);
+        createdUser(createdAuthUser);
         createSession(userAuthForm.getUserName());
         return "redirect:/";
+    }
+
+    private void createdUser(AuthUser createdAuthUser) {
+        // TODO tomoya.kinsho user tableにnicknameを保存する (2019-07-03)
+        User user = new User();
     }
 
     private void createSession(String userName) {

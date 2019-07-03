@@ -1,13 +1,12 @@
 package com.example.demo.form;
 
-import java.util.function.ToDoubleBiFunction;
-
-public class userAuthForm {
+public class UserAuthForm {
     private String email;
     private String password;
     private String userName;
 
-    public userAuthForm(String email, String password, String userName) {
+    public UserAuthForm(String email, String password, String userName) {
+        System.out.println(email);
         this.email = email;
         this.password = password;
         this.userName = userName;
@@ -30,7 +29,7 @@ public class userAuthForm {
     }
 
     public void setPassword(String password) {
-        // TODO: ここでハッシュ化する処理を書く
+        // TODO: ここでハッシュ化する処理を書く saltはライブラリで保管してくれる
         this.password = password;
     }
 
