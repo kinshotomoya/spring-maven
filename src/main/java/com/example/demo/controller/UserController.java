@@ -5,11 +5,11 @@ import bean.UserSessionBean;
 import com.example.demo.entity.User;
 import com.example.demo.form.UserAuthForm;
 import com.example.demo.repository.AuthUserRepository;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
@@ -25,6 +25,9 @@ public class UserController {
     @Autowired
     private AuthUserRepository authUserRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/sign_up")
     public String renderSignUp() {
         return "sign_up";
@@ -37,19 +40,26 @@ public class UserController {
 
     @PostMapping("/sign_up")
     public String create(@ModelAttribute UserAuthForm userAuthForm) {
-        // TODO tomoya.kinsho requestを取得する処理書く (2019-07-03)
-        AuthUser authUser = new AuthUser();
-        authUser.setEmail(userAuthForm.getEmail());
-        authUser.setHashed_password(userAuthForm.getPassword());
-        AuthUser createdAuthUser = authUserRepository.save(authUser);
-        createdUser(createdAuthUser);
-        createSession(userAuthForm.getUserName());
+        AuthUser createdAuthUser = createAuthUser(userAuthForm);
+        createUser(createdAuthUser, userAuthForm);
+        createSession(userAuthForm.getNickName());
         return "redirect:/";
     }
 
-    private void createdUser(AuthUser createdAuthUser) {
-        // TODO tomoya.kinsho user tableにnicknameを保存する (2019-07-03)
+    private AuthUser createAuthUser(@ModelAttribute UserAuthForm userAuthForm) {
+        AuthUser authUser = new AuthUser();
+        authUser.setEmail(userAuthForm.getEmail());
+        authUser.setHashed_password(userAuthForm.getPassword());
+        return authUserRepository.save(authUser);
+    }
+
+    private void createUser(AuthUser createdAuthUser, UserAuthForm userAuthForm) {
         User user = new User();
+        System.out.println("---------------------------");
+        System.out.println(userAuthForm.getNickName());
+        user.setNickname(userAuthForm.getNickName());
+        user.setAuth_user_id(createdAuthUser.getId());
+        userRepository.save(user);
     }
 
     private void createSession(String userName) {

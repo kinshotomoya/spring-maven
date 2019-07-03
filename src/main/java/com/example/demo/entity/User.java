@@ -13,6 +13,8 @@ public class User {
 
     private String nickname;
 
+    private Integer auth_user_id;
+
     public Integer getUser_id() {
         return user_id;
     }
@@ -21,11 +23,19 @@ public class User {
         return nickname;
     }
 
+    public Integer getAuth_user_id() {
+        return auth_user_id;
+    }
+
     public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public void setAuth_user_id(Integer auth_user_id) {
+        this.auth_user_id = auth_user_id;
     }
 }

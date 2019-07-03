@@ -3,13 +3,15 @@ package com.example.demo.form;
 public class UserAuthForm {
     private String email;
     private String password;
-    private String userName;
+    private String nickName;
 
-    public UserAuthForm(String email, String password, String userName) {
+    public UserAuthForm(String email, String password, String nickName) {
         System.out.println(email);
+        System.out.println(password);
+        System.out.println(nickName);
         this.email = email;
         this.password = password;
-        this.userName = userName;
+        this.nickName = nickName;
     }
 
     public String getEmail() {
@@ -20,8 +22,8 @@ public class UserAuthForm {
         return password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getNickName() {
+        return nickName;
     }
 
     public void setEmail(String email) {
@@ -33,7 +35,7 @@ public class UserAuthForm {
         this.password = password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 }
