@@ -9,7 +9,6 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
@@ -27,6 +26,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private User user;
 
     @GetMapping("/sign_up")
     public String renderSignUp() {
@@ -54,9 +56,6 @@ public class UserController {
     }
 
     private void createUser(AuthUser createdAuthUser, UserAuthForm userAuthForm) {
-        User user = new User();
-        System.out.println("---------------------------");
-        System.out.println(userAuthForm.getNickName());
         user.setNickname(userAuthForm.getNickName());
         user.setAuth_user_id(createdAuthUser.getId());
         userRepository.save(user);

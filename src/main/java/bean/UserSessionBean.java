@@ -2,6 +2,7 @@ package bean;
 
 import java.time.LocalDateTime;
 
+
 public class UserSessionBean {
     private String userName;
     private LocalDateTime expiredTime;

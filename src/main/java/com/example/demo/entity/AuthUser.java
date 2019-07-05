@@ -1,10 +1,13 @@
 package com.example.demo.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Component
 @Entity
 public class AuthUser {
     @Id

@@ -1,10 +1,14 @@
 package com.example.demo.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+// userControllerにDI（autwired）するために、@Componentをつける
+@Component
 @Entity
 public class User {
     @Id
